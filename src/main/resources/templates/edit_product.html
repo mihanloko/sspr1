@@ -1,160 +1,169 @@
 <!DOCTYPE html>
-<html lang="ru">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<meta name="description" content="Что-то с палатками">
-		<meta name="author" content="">
-		<!-- <link rel="icon" href="https://bootstrap-4.ru/favicon.ico"> -->
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-		<title>Редактирование</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Что-то с палатками">
+    <meta name="author" content="">
+    <!-- <link rel="icon" href="https://bootstrap-4.ru/favicon.ico"> -->
 
-		<!-- Bootstrap core CSS -->
-		<link href="./js_and_css/bootstrap.min.css" rel="stylesheet">
+    <title>Редактирование</title>
 
-		<!-- Custom styles for this template -->
-		<link href="./js_and_css/pricing.css" rel="stylesheet">
-	</head>
+    <!-- Bootstrap core CSS -->
+    <link href="./js_and_css/bootstrap.min.css" rel="stylesheet">
 
-	<body>
+    <!-- Custom styles for this template -->
+    <link href="./js_and_css/pricing.css" rel="stylesheet">
+</head>
 
-		<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-			<h5 class="my-0 mr-md-auto font-weight-normal">Палатки</h5>
-			<nav class="my-2 my-md-0 mr-md-3">
-				<a class="p-2 text-dark" href="index.html">Весь список</a>
-			</nav>
-			<!-- <a class="btn btn-outline-primary" href="https://bootstrap-4.ru/docs/4.0/examples/pricing/#">Sign up</a> -->
-		</div>
+<body>
 
-		<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-			<h1 class="display-4">Редактирование</h1>
-			<!-- <p class="lead">Quickly build an effective pricing table for your potential customers with this Bootstrap example. It's built with default Bootstrap components and utilities with little customization.</p> -->
-		</div>
-	
-	
-				<div class="container">
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+    <h5 class="my-0 mr-md-auto font-weight-normal">Палатки</h5>
+    <nav class="my-2 my-md-0 mr-md-3">
+        <a class="p-2 text-dark" href="index.html">Весь список</a>
+    </nav>
+    <!-- <a class="btn btn-outline-primary" href="https://bootstrap-4.ru/docs/4.0/examples/pricing/#">Sign up</a> -->
+</div>
 
-					<form>
-						<div class="form-group">
-							<label for="inputProductName"><font face="Comic sans MS">Название палатки</font></label>
-							<input type="text" class="form-control" id="inputProductName" aria-describedby="productNameHelp" placeholder="Введите название палатки">
-						</div>
-						
-						<div class="form-group">
-							<label for="description"><font face="Comic sans MS">Краткое описание</font></label>
-							<input type="text" class="form-control" id="description" aria-describedby="description" placeholder="Краткое описание">
-						</div>
-						
-						<div class="control-group">
-							<label class="control-label" for="manufacturer">Выберите производителя</label>
-							<div class="controls">
-								<select class="form-control" id="manufacturer"	style="width: 200px;">
-								<option value="1">Outventure</option>
-								<option value="2">Trek planet</option>
-								<option value="3">Tramp</option>
-								<option value="4">Greenell</option>
-								</select>
-							</div>
-						</div>
-						
-						<div class="form-group">
-							<label for="mass"><font face="Comic sans MS">Вес, кг</font></label>
-							<input type="text" class="form-control" id="mass" aria-describedby="description" placeholder="Вес">
-						</div>
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">Редактирование</h1>
+    <!-- <p class="lead">Quickly build an effective pricing table for your potential customers with this Bootstrap example. It's built with default Bootstrap components and utilities with little customization.</p> -->
+</div>
 
-						<div class="form-group">
-							<label for="places"><font face="Comic sans MS">Количество мест</font></label>
-							<input type="text" class="form-control" id="places" aria-describedby="description" placeholder="Количество мест">
-						</div>
 
-						<div class="form-group">
-							<label><font face="Comic sans MS">Габариты в разложенном состоянии</font></label>
-							<div class="row">
-								<div class="col">
-									<input type="text" class="form-control" placeholder="длина">
-								</div>
-								<div class="col">
-									<input type="text" class="form-control" placeholder="ширина">
-								</div>
-								<div class="col">
-									<input type="text" class="form-control" placeholder="высота">
-								</div>
-							</div>
-						</div>
+<div class="container">
 
-						<div class="form-group">
-							<label><font face="Comic sans MS">Габариты в сложенном состоянии</font></label>
-							<div class="row">
-								<div class="col">
-									<input type="text" class="form-control" placeholder="длина">
-								</div>
-								<div class="col">
-									<input type="text" class="form-control" placeholder="ширина">
-								</div>
-								<div class="col">
-									<input type="text" class="form-control" placeholder="высота">
-								</div>
-							</div>
-						</div>
+    <form th:action="@{process_edit}" method="post">
 
-						<div class="form-group">
-							<label><font face="Comic sans MS">Особые качества</font></label>
-							<div class="row">
-								<div class="col-md-3">
-									<input type="text" class="form-control" placeholder="Название">
-								</div>
-								<div class="col">
-									<input type="text" class="form-control" placeholder="Подробнее">
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-3">
-									<input type="text" class="form-control" placeholder="Название">
-								</div>
-								<div class="col">
-									<input type="text" class="form-control" placeholder="Подробнее">
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-3">
-									<input type="text" class="form-control" placeholder="Название">
-								</div>
-								<div class="col">
-									<input type="text" class="form-control" placeholder="Подробнее">
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-3">
-									<input type="text" class="form-control" placeholder="Название">
-								</div>
-								<div class="col">
-									<input type="text" class="form-control" placeholder="Подробнее">
-								</div>
-							</div>
-						</div>
+        <input type="hidden" name="id" th:value="${tent.id}"/>
 
-						<div class="form-group">
-							<label for="inputFile"><font face="Comic sans MS">Выбрать изображение изделия</font></label>
-							<input type="file" class="form-control-file" id="inputFile" aria-describedby="fileHelp">
-							<small id="fileHelp" class="form-text text-muted">Выберите изображение</small>
-						</div>
-						<button type="submit" class="btn btn-primary"><font face="Comic sans MS">Подтвердить</font></button>
-					</form>
-				</div>
-				
-		<script src="./js_and_css/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-		<script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-		<script src="./js_and_css/popper.min.js"></script>
-		<script src="./js_and_css/bootstrap.min.js"></script>
-		<script src="./js_and_css/holder.min.js"></script>
-		<script>
-			Holder.addTheme('thumb', {
-				bg: '#55595c',
-				fg: '#eceeef',
-				text: 'Thumbnail'
-			});
-		</script>
-	
+        <div class="form-group">
+            <label ><font face="Comic sans MS">Название палатки</font></label>
+            <input th:value="${tent.tentName}" type="text" class="form-control" name="inputProductName" aria-describedby="productNameHelp" placeholder="Введите название палатки">
+        </div>
+
+        <div class="form-group">
+            <label ><font face="Comic sans MS">Краткое описание</font></label>
+            <input th:value="${tent.tentDescription}" type="text" class="form-control" name="description" aria-describedby="description" placeholder="Краткое описание">
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" >Выберите производителя</label>
+            <div class="controls">
+                <select th:value="${tent.manufacturer.id}" class="form-control" name="manufacturer"	style="width: 200px;">
+                    <option value="1">Outventure</option>
+                    <option value="2">Trek planet</option>
+                    <option value="3">Tramp</option>
+                    <option value="4">Greenell</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label ><font face="Comic sans MS">Вес, кг</font></label>
+            <input th:value="${tent.weight}" type="text" class="form-control" name="mass" aria-describedby="description" placeholder="Вес">
+        </div>
+
+        <div class="form-group">
+            <label ><font face="Comic sans MS">Цена</font></label>
+            <input th:value="${tent.price}" type="text" class="form-control" name="price" aria-describedby="description" placeholder="Цена">
+        </div>
+
+        <div class="form-group">
+            <label ><font face="Comic sans MS">Количество мест</font></label>
+            <input th:value="${tent.places}" type="text" class="form-control" name="places" aria-describedby="description" placeholder="Количество мест">
+        </div>
+
+        <div class="form-group">
+            <label><font face="Comic sans MS">Габариты в разложенном состоянии</font></label>
+            <div class="row">
+                <div class="col">
+                    <input th:value="${tent.lengthFull}" name="fullLength" type="text" class="form-control" placeholder="длина">
+                </div>
+                <div class="col">
+                    <input th:value="${tent.widthFull}" name="fullWidth"  type="text" class="form-control" placeholder="ширина">
+                </div>
+                <div class="col">
+                    <input th:value="${tent.heightFull}" name="fullHeight"  type="text" class="form-control" placeholder="высота">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label><font face="Comic sans MS">Габариты в сложенном состоянии</font></label>
+            <div class="row">
+                <div class="col">
+                    <input th:value="${tent.lengthSmall}" name="smallLength" type="text" class="form-control" placeholder="длина">
+                </div>
+                <div class="col">
+                    <input th:value="${tent.widthSmall}" name="smallWidth" type="text" class="form-control" placeholder="ширина">
+                </div>
+                <div class="col">
+                    <input th:value="${tent.heightSmall}" name="smallHeight" type="text" class="form-control" placeholder="высота">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label><font face="Comic sans MS">Особые качества</font></label>
+            <div class="row">
+                <div class="col-md-3">
+                    <input th:value="${tent.properties[0].title}" name="name1" type="text" class="form-control" placeholder="Название">
+                </div>
+                <div class="col">
+                    <input th:value="${tent.properties[0].fullText}" name="description1" type="text" class="form-control" placeholder="Подробнее">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <input th:value="${tent.properties[1].title}" name="name2" type="text" class="form-control" placeholder="Название">
+                </div>
+                <div class="col">
+                    <input th:value="${tent.properties[1].fullText}" name="description2" type="text" class="form-control" placeholder="Подробнее">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <input th:value="${tent.properties[2].title}" name="name3" type="text" class="form-control" placeholder="Название">
+                </div>
+                <div class="col">
+                    <input th:value="${tent.properties[2].fullText}" name="description3" type="text" class="form-control" placeholder="Подробнее">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <input th:value="${tent.properties[3].title}" name="name4" type="text" class="form-control" placeholder="Название">
+                </div>
+                <div class="col">
+                    <input th:value="${tent.properties[3].fullText}" name="description4" type="text" class="form-control" placeholder="Подробнее">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="inputFile"><font face="Comic sans MS">Выбрать изображение изделия</font></label>
+            <input th:value="${tent.imageFile}" type="text" class="form-control-file" id="inputFile" name="inputFile">
+            <!--							<small id="fileHelp" class="form-text text-muted">Выберите изображение</small>-->
+        </div>
+        <button type="submit" class="btn btn-primary"><font face="Comic sans MS">Подтвердить</font></button>
+    </form>
+
+</div>
+
+<script src="./js_and_css/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="js_and_css/jquery-3.2.1.slim.min.js"><\/script>')</script>
+<script src="./js_and_css/popper.min.js"></script>
+<script src="./js_and_css/bootstrap.min.js"></script>
+<script src="./js_and_css/holder.min.js"></script>
+<script>
+    Holder.addTheme('thumb', {
+        bg: '#55595c',
+        fg: '#eceeef',
+        text: 'Thumbnail'
+    });
+</script>
+
 </body>
 </html>

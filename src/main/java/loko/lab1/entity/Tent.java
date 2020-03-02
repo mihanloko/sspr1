@@ -3,11 +3,13 @@ package loko.lab1.entity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Getter
+@Setter
 @Entity
 @Table(name = "tents")
 @AllArgsConstructor
@@ -20,6 +22,9 @@ public class Tent {
 
     @Column
     private Integer places;
+
+    @Column
+    private Integer price;
 
     @Column
     private Double weight;
@@ -43,6 +48,9 @@ public class Tent {
     @Column
     private Integer widthSmall;
 
+    @Column
+    private String imageFile;
+
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "tentId")
     private List<Property> properties;
@@ -50,4 +58,12 @@ public class Tent {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "manufacturer_id", referencedColumnName = "id")
     private Manufacturer manufacturer;
+
+    public String getFullSize() {
+        return heightFull.toString() + "*" + lengthFull.toString() + "*" + widthFull.toString();
+    }
+
+    public String getSmallSize() {
+        return heightSmall.toString() + "*" + lengthSmall.toString() + "*" + widthSmall.toString();
+    }
 }

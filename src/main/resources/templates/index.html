@@ -1,126 +1,94 @@
 <!DOCTYPE html>
-<html lang="ru">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<meta name="description" content="Что-то с палатками">
-		<meta name="author" content="">
-		<!-- <link rel="icon" href="https://bootstrap-4.ru/favicon.ico"> -->
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-		<title>Палатки</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Что-то с палатками">
+    <meta name="author" content="">
+    <!-- <link rel="icon" href="https://bootstrap-4.ru/favicon.ico"> -->
 
-		<!-- Bootstrap core CSS -->
-		<link href="./js_and_css/bootstrap.min.css" rel="stylesheet">
+    <title>Палатки</title>
 
-		<!-- Custom styles for this template -->
-		<link href="./js_and_css/pricing.css" rel="stylesheet">
-	</head>
+    <!-- Bootstrap core CSS -->
+    <link href="./js_and_css/bootstrap.min.css" rel="stylesheet">
 
-	<body>
+    <!-- Custom styles for this template -->
+    <link href="./js_and_css/pricing.css" rel="stylesheet">
+</head>
 
-		<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-			<h5 class="my-0 mr-md-auto font-weight-normal">Палатки</h5>
-			<nav class="my-2 my-md-0 mr-md-3">
-				<a class="p-2 text-dark" href="index.html">Весь список</a>
-			</nav>
-			<!-- <a class="btn btn-outline-primary" href="https://bootstrap-4.ru/docs/4.0/examples/pricing/#">Sign up</a> -->
-		</div>
+<body>
 
-		<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-			<h1 class="display-4">Список палаток</h1>
-			<!-- <p class="lead">Quickly build an effective pricing table for your potential customers with this Bootstrap example. It's built with default Bootstrap components and utilities with little customization.</p> -->
-		</div>
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+    <h5 class="my-0 mr-md-auto font-weight-normal">Палатки</h5>
+    <nav class="my-2 my-md-0 mr-md-3">
+        <a class="p-2 text-dark" href="/">Весь список</a>
+        <a class="p-2 text-dark" href="/new_tent">Новая</a>
+    </nav>
+    <!-- <a class="btn btn-outline-primary" href="https://bootstrap-4.ru/docs/4.0/examples/pricing/#">Sign up</a> -->
+</div>
 
-		<div class="container">
-			<div class="card-deck mb-3 text-center">
-				
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">Список палаток</h1>
+    <!-- <p class="lead">Quickly build an effective pricing table for your potential customers with this Bootstrap example. It's built with default Bootstrap components and utilities with little customization.</p> -->
+</div>
 
-				<div class="card mb-4 box-shadow">
-					<div class="card-header">
-						<h4 class="my-0 font-weight-normal">Простая</h4>
-					</div>
-					<div class="img-holder">
-						<img src="./img/1.jpg" class="card-img-top my-2 img-item" alt="...">
-					</div>
-					<div class="card-body">
-						<h1 class="card-title pricing-card-title">3000Р</h1>
-						<ul class="list-unstyled mt-3 mb-4">
-							<li>Количество мест: 2</li>
-							<li>Габариты в разложенном состоянии: 200*200*150</li>
-							<li>Габариты в сложенном состоянии: 50*50*15</li>
-							<li>Производитель: Outventure</li>
-							<li>Вес: 5кг</li>
-						</ul>
-						<!-- <button type="button" class="btn btn-lg btn-block btn-outline-primary">Sign up for free</button> -->
-						<button type="button" class="btn btn-lg btn-block btn-primary">Купить</button>
-						<button type="button" class="btn btn-lg btn-block btn-warning">Редактировать</button>
-						<button type="button" class="btn btn-lg btn-block btn-danger">Удалить</button>
-					</div>
-				</div>
+<div class="container">
+    <div th:if="${not #lists.isEmpty(tents)}" class="card-deck mb-3 text-center">
 
 
-				<div class="card mb-4 box-shadow">
-					<div class="card-header">
-						<h4 class="my-0 font-weight-normal">Получше</h4>
-					</div>
-					<div class="img-holder">
-						<img src="./img/2.jpg" class="card-img-top my-2 img-item" alt="...">
-					</div>
-					<div class="card-body">
-						<h1 class="card-title pricing-card-title">8000Р</h1>
-						<ul class="list-unstyled mt-3 mb-4">
-							<li>Количество мест: 4</li>
-							<li>Габариты в разложенном состоянии: 200*200*150</li>
-							<li>Габариты в сложенном состоянии: 50*50*15</li>
-							<li>Производитель: Outventure</li>
-							<li>Вес: 7кг</li>
-						</ul>
-						<button type="button" class="btn btn-lg btn-block btn-primary">Купить</button>
-						<button type="button" class="btn btn-lg btn-block btn-warning">Редактировать</button>
-						<button type="button" class="btn btn-lg btn-block btn-danger">Удалить</button>
-					</div>
-				</div>
+        <div th:each="tent : ${tents}" class="card mb-4 box-shadow">
+            <div class="card-header">
+                <h4 th:text="${tent.tentName}" class="my-0 font-weight-normal"></h4>
+            </div>
+            <div class="img-holder">
+                <img th:src="${tent.imageFile}" class="card-img-top my-2 img-item" alt="...">
+            </div>
+            <div class="card-body">
+                <h1 class="card-title pricing-card-title" th:text="${tent.price}+'Р'"></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                    <li th:text="'Количество мест: '+${tent.places}"></li>
+                    <li th:text="'Габариты в разложенном состоянии: '+${tent.getFullSize()}"></li>
+                    <li th:text="'Габариты в разложенном состоянии: '+${tent.getSmallSize()}"></li>
+                    <li th:text="'Производитель: '+${tent.manufacturer.manufacturerName}"></li>
+                    <li th:text="'Вес: '+${tent.weight}"></li>
+                </ul>
 
+                <form th:action="@{watch}" method="post">
+                    <input type="hidden" name="id" th:value="${tent.id}">
+                    <button type="submit" class="btn btn-lg btn-block btn-primary">Посмотреть</button>
+                </form>
 
-				<div class="card mb-4 box-shadow">
-					<div class="card-header">
-						<h4 class="my-0 font-weight-normal">Какая-то дорогая</h4>
-					</div>
-					<div class="img-holder">
-						<img src="./img/3.jpg" class="card-img-top my-2 img-item" alt="...">
-					</div>
-					<div class="card-body">
-						<h1 class="card-title pricing-card-title">16000Р</h1>
-						<ul class="list-unstyled mt-3 mb-4">
-							<li>Количество мест: 6</li>
-							<li>Габариты в разложенном состоянии: 200*200*150</li>
-							<li>Габариты в сложенном состоянии: 50*50*15</li>
-							<li>Производитель: Outventure</li>
-							<li>Вес: 10кг</li>
-						</ul> 
-						<button type="button" class="btn btn-lg btn-block btn-primary">Купить</button>
-						<button type="button" class="btn btn-lg btn-block btn-warning">Редактировать</button>
-						<button type="button" class="btn btn-lg btn-block btn-danger">Удалить</button>
-					</div>
-				</div>
-			</div>
+                <form th:action="@{edit_page}" method="post">
+                    <input type="hidden" name="id" th:value="${tent.id}">
+                    <button type="submit" class="btn btn-lg btn-block btn-warning">Редактировать</button>
+                </form>
 
-		<!-- Bootstrap core JavaScript
-		================================================== -->
-		<!-- Placed at the end of the document so the pages load faster -->
-		<script src="./js_and_css/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-		<script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-		<script src="./js_and_css/popper.min.js"></script>
-		<script src="./js_and_css/bootstrap.min.js"></script>
-		<script src="./js_and_css/holder.min.js"></script>
-		<script>
-			Holder.addTheme('thumb', {
-				bg: '#55595c',
-				fg: '#eceeef',
-				text: 'Thumbnail'
-			});
-		</script>
-	
+                <form th:action="@{delete}" method="post">
+                    <input type="hidden" name="id" th:value="${tent.id}">
+                    <button type="submit" class="btn btn-lg btn-block btn-danger">Удалить</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="./js_and_css/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="js_and_css/jquery-3.2.1.slim.min.js"><\/script>')</script>
+<script src="./js_and_css/popper.min.js"></script>
+<script src="./js_and_css/bootstrap.min.js"></script>
+<script src="./js_and_css/holder.min.js"></script>
+<script>
+    Holder.addTheme('thumb', {
+        bg: '#55595c',
+        fg: '#eceeef',
+        text: 'Thumbnail'
+    });
+</script>
+
 </body>
 </html>

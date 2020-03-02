@@ -1,81 +1,80 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<meta name="description" content="Что-то с палатками">
-		<meta name="author" content="">
-		<!-- <link rel="icon" href="https://bootstrap-4.ru/favicon.ico"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Что-то с палатками">
+    <meta name="author" content="">
+    <!-- <link rel="icon" href="https://bootstrap-4.ru/favicon.ico"> -->
 
-		<title>Подробный просмотр</title>
+    <title>Подробный просмотр</title>
 
-		<!-- Bootstrap core CSS -->
-		<link href="./js_and_css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <link href="./js_and_css/bootstrap.min.css" rel="stylesheet">
 
-		<!-- Custom styles for this template -->
-		<link href="./js_and_css/pricing.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="./js_and_css/pricing.css" rel="stylesheet">
 </head>
 
 <body>
 
 <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-		<h5 class="my-0 mr-md-auto font-weight-normal">Палатки</h5>
-		<nav class="my-2 my-md-0 mr-md-3">
-				<a class="p-2 text-dark" href="index.html">Весь список</a>
-		</nav>
-		<!-- <a class="btn btn-outline-primary" href="https://bootstrap-4.ru/docs/4.0/examples/pricing/#">Sign up</a> -->
+    <h5 class="my-0 mr-md-auto font-weight-normal">Палатки</h5>
+    <nav class="my-2 my-md-0 mr-md-3">
+        <a class="p-2 text-dark" href="/">Весь список</a>
+    </nav>
+    <!-- <a class="btn btn-outline-primary" href="https://bootstrap-4.ru/docs/4.0/examples/pricing/#">Sign up</a> -->
 </div>
 
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-			<h1 class="display-4">Подробное описание</h1>
-			<!-- <p class="lead">Quickly build an effective pricing table for your potential customers with this Bootstrap example. It's built with default Bootstrap components and utilities with little customization.</p> -->
-		</div>
+    <h1 class="display-4">Подробное описание</h1>
+    <!-- <p class="lead">Quickly build an effective pricing table for your potential customers with this Bootstrap example. It's built with default Bootstrap components and utilities with little customization.</p> -->
+</div>
 
 <div class="container">
 
-		<div class="row">
+    <div class="row">
 
-				<div class="col-md-10">
+        <div class="col-md-10">
 
-						<div class="thumbnail">
-								<img class="img-responsive" src="./img/3.jpg" alt="">
-								<div class="caption-full">
+            <div class="thumbnail">
+                <img class="img-responsive" th:src="${tent.imageFile}" alt="">
+                <div class="caption-full">
 
-										<h4><a href="#"><font face="Comic sans MS">Дорогая палатка</font></a>
-										</h4>
-										<p>Шестиместная кемпинговая палатка с одним тамбуром и тремя отдельными спальными отделениями - то,
-												что нужно для отдыха на природе большой компанией.</p>
-										<ul class="mt-3 mb-4">
-											<li>Количество мест: 2</li>
-											<li>Габариты в разложенном состоянии: 200*200*150</li>
-											<li>Габариты в сложенном состоянии: 50*50*15</li>
-											<li>Производитель: Outventure</li>
-											<li>Вес: 10кг</li>
-										</ul>
-										<dl class="row">
-												<dt class="col-sm-5">ВМЕСТИТЕЛЬНОСТЬ</dt>
-												<dd class="col-sm-9">3 отдельные жилые комнаты позволяют комфортно разместиться 6 отдыхающим.</dd>
+                    <h4><a href="#"><font face="Comic sans MS" th:text="${tent.tentName}"></font></a>
+                    </h4>
+                    <p th:text="${tent.tentDescription}"></p>
+                    <ul class="mt-3 mb-4">
+                        <li th:text="'Количество мест: '+${tent.places}"></li>
+                        <li th:text="'Габариты в разложенном состоянии: '+${tent.getFullSize()}"></li>
+                        <li th:text="'Габариты в разложенном состоянии: '+${tent.getSmallSize()}"></li>
+                        <li th:text="'Производитель: '+${tent.manufacturer.manufacturerName}"></li>
+                        <li th:text="'Вес: '+${tent.weight}"></li>
+                    </ul>
+                    <dl class="row">
+                        <dt class="col-sm-5" th:text="${tent.properties[0].title}"></dt>
+                        <dd class="col-sm-9" th:text="${tent.properties[0].fullText}">
+                        </dd>
 
-												<dt class="col-sm-5">БОЛЬШОЙ ТАМБУР</dt>
-												<dd class="col-sm-9">
-														<p>Просторный тамбур позволяет организовать кухню и хранить все вещи.</p>
-												</dd>
+                        <dt class="col-sm-5" th:text="${tent.properties[1].title}"></dt>
+                        <dd class="col-sm-9" th:text="${tent.properties[1].fullText}">
+                        </dd>
 
-												<dt class="col-sm-5">ПРОСТАЯ СБОРКА</dt>
-												<dd class="col-sm-9">Каждая дуга каркаса промаркирована, что облегчает процесс установки.</dd>
+                        <dt class="col-sm-5" th:text="${tent.properties[2].title}"></dt>
+                        <dd class="col-sm-9" th:text="${tent.properties[2].fullText}"></dd>
 
-												<dt class="col-sm-5">ВОДОНЕПРОНИЦАЕМОСТЬ</dt>
-												<dd class="col-sm-9">Показатель в 2000 мм/в.ст/сутки позволяет палатке оставаться сухой продолжительное время. Все швы проклеены.
-												</dd>
+                        <dt class="col-sm-5" th:text="${tent.properties[3].title}"></dt>
+                        <dd class="col-sm-9" th:text="${tent.properties[3].fullText}">
+                        </dd>
 
-										</dl>
-								</div>
-						</div>
+                    </dl>
+                </div>
+            </div>
 
-				</div>
+        </div>
 
-		</div>
+    </div>
 
 </div>
 
@@ -84,18 +83,18 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="./js_and_css/jquery-3.2.1.slim.min.js"
-				integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-				crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="js_and_css/jquery-3.2.1.slim.min.js"><\/script>')</script>
 <script src="./js_and_css/popper.min.js"></script>
 <script src="./js_and_css/bootstrap.min.js"></script>
 <script src="./js_and_css/holder.min.js"></script>
 <script>
-		Holder.addTheme('thumb', {
-				bg: '#55595c',
-				fg: '#eceeef',
-				text: 'Thumbnail'
-		});
+    Holder.addTheme('thumb', {
+        bg: '#55595c',
+        fg: '#eceeef',
+        text: 'Thumbnail'
+    });
 </script>
 
 </body>

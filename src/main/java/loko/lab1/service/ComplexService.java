@@ -8,4 +8,10 @@ public interface ComplexService {
 
     List<Tent> findAllTents();
 
+    void deleteProperties(long id);
+
+    void saveTent(Tent tent);
+
+    void deleteTent(long id);
+
 }
