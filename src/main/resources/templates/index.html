@@ -33,51 +33,134 @@
     <!-- <p class="lead">Quickly build an effective pricing table for your potential customers with this Bootstrap example. It's built with default Bootstrap components and utilities with little customization.</p> -->
 </div>
 
-<div class="container">
-    <div th:if="${not #lists.isEmpty(tents)}" class="card-deck mb-3 text-center">
 
+<div class="container-xl">
+    <table width="90%" align="center">
+        <tr>
+            <td width="20%" valign="top">
+                <form th:action="@{/}" method="get">
+                    <div class="form-group">
+                        <label class="control-label" >Диапазон цены</label>
+                        <div class="row">
+                            <div class="col">
+                                <label>
+                                    <input th:value="${priceMin}" name="priceMin" type="text" class="form-control">
+                                </label>
+                            </div>-
+                            <div class="col">
+                                <label>
+                                    <input th:value="${priceMax}" name="priceMax" type="text" class="form-control">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
 
-        <div th:each="tent : ${tents}" class="card mb-4 box-shadow">
-            <div class="card-header">
-                <h4 th:text="${tent.tentName}" class="my-0 font-weight-normal"></h4>
-            </div>
-            <div class="img-holder">
-                <img th:src="${tent.imageFile}" class="card-img-top my-2 img-item" alt="...">
-            </div>
-            <div class="card-body">
-                <h1 class="card-title pricing-card-title" th:text="${tent.price}+'Р'"></h1>
-                <ul class="list-unstyled mt-3 mb-4">
-                    <li th:text="'Количество мест: '+${tent.places}"></li>
-                    <li th:text="'Габариты в разложенном состоянии: '+${tent.getFullSize()}"></li>
-                    <li th:text="'Габариты в разложенном состоянии: '+${tent.getSmallSize()}"></li>
-                    <li th:text="'Производитель: '+${tent.manufacturer.manufacturerName}"></li>
-                    <li th:text="'Вес: '+${tent.weight}"></li>
-                </ul>
+                    <div class="control-group">
+                        <label class="control-label" >Выберите производителя</label>
+                        <div class="controls">
+                            <select th:value="${manufacturer}" class="form-control" name="manufacturer">
+                                <option value="0"></option>
+                                <option value="1">Outventure</option>
+                                <option value="2">Trek planet</option>
+                                <option value="3">Tramp</option>
+                                <option value="4">Greenell</option>
+                            </select>
+                        </div>
+                    </div>
 
-                <form th:action="@{watch}" method="post">
-                    <input type="hidden" name="id" th:value="${tent.id}">
-                    <button type="submit" class="btn btn-lg btn-block btn-primary">Посмотреть</button>
+                    <div class="form-group">
+                        <label class="control-label" >Количество мест</label>
+                        <div class="row">
+                            <div class="col">
+                                <label>
+                                    <input th:value="${placeMin}" name="placeMin" type="text" class="form-control">
+                                </label>
+                            </div>-
+                            <div class="col">
+                                <label>
+                                    <input th:value="${placeMax}" name="placeMax" type="text" class="form-control">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" >Вес</label>
+                        <div class="row">
+                            <div class="col">
+                                <label> 
+                                    <input th:value="${weightMin}" name="weightMin" type="text" class="form-control">
+                                </label>
+                            </div>-
+                            <div class="col">
+                                <label>
+                                    <input th:value="${weightMax}" name="weightMax" type="text" class="form-control">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+                    <button type="submit" class="btn btn-lg btn-block btn-success">Применить
+                    </button>
                 </form>
-
-                <form th:action="@{edit_page}" method="post">
-                    <input type="hidden" name="id" th:value="${tent.id}">
-                    <button type="submit" class="btn btn-lg btn-block btn-warning">Редактировать</button>
+                <form th:action="@{/}" method="get">
+                    <button type="submit" class="btn btn-lg btn-block btn-dark">Отменить</button>
                 </form>
+            </td>
+            <td width="5%"></td>
+            <td>
+                <div th:if="${not #lists.isEmpty(tents)}" class="card-deck mb-3 text-center">
 
-                <form th:action="@{delete}" method="post">
-                    <input type="hidden" name="id" th:value="${tent.id}">
-                    <button type="submit" class="btn btn-lg btn-block btn-danger">Удалить</button>
-                </form>
-            </div>
-        </div>
 
-    </div>
+                    <div th:each="tent : ${tents}" class="card mb-4 box-shadow">
+                        <div class="card-header">
+                            <h4 th:text="${tent.tentName}" class="my-0 font-weight-normal"></h4>
+                        </div>
+                        <div class="img-holder">
+                            <img th:src="${tent.imageFile}" class="card-img-top my-2 img-item" alt="...">
+                        </div>
+                        <div class="card-body">
+                            <h1 class="card-title pricing-card-title" th:text="${tent.price}+'Р'"></h1>
+                            <ul class="list-unstyled mt-3 mb-4">
+                                <li th:text="'Количество мест: '+${tent.places}"></li>
+                                <li th:text="'Габариты в разложенном состоянии: '+${tent.getFullSize()}"></li>
+                                <li th:text="'Габариты в разложенном состоянии: '+${tent.getSmallSize()}"></li>
+                                <li th:text="'Производитель: '+${tent.manufacturer.manufacturerName}"></li>
+                                <li th:text="'Вес: '+${tent.weight}"></li>
+                            </ul>
+
+                            <form th:action="@{watch}" method="post">
+                                <input type="hidden" name="id" th:value="${tent.id}">
+                                <button type="submit" class="btn btn-lg btn-block btn-primary">Посмотреть
+                                </button>
+                            </form>
+
+                            <form th:action="@{edit_page}" method="post">
+                                <input type="hidden" name="id" th:value="${tent.id}">
+                                <button type="submit" class="btn btn-lg btn-block btn-warning">Редактировать
+                                </button>
+                            </form>
+
+                            <form th:action="@{delete}" method="post">
+                                <input type="hidden" name="id" th:value="${tent.id}">
+                                <button type="submit" class="btn btn-lg btn-block btn-danger">Удалить</button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </td>
+        </tr>
+    </table>
 </div>
 
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="./js_and_css/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="./js_and_css/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
 <script>window.jQuery || document.write('<script src="js_and_css/jquery-3.2.1.slim.min.js"><\/script>')</script>
 <script src="./js_and_css/popper.min.js"></script>
 <script src="./js_and_css/bootstrap.min.js"></script>

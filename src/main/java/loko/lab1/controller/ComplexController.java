@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @AllArgsConstructor
@@ -24,9 +25,36 @@ public class ComplexController {
     private TentRepository tentRepository;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String mainPage(Model model) {
+    public String mainPage(Model model,
+                           @RequestParam(required = false, defaultValue = "0") long priceMin,
+                           @RequestParam(required = false, defaultValue = "1000000") long priceMax,
+                           @RequestParam(required = false, defaultValue = "0") long weightMin,
+                           @RequestParam(required = false, defaultValue = "40") long weightMax,
+                           @RequestParam(required = false, defaultValue = "0") long placeMin,
+                           @RequestParam(required = false, defaultValue = "20") long placeMax,
+                           @RequestParam(required = false, defaultValue = "0") long manufacturer) {
         List<Tent> tents = service.findAllTents();
 
+        tents = tents.stream().filter(tent -> tent.getPrice() >= priceMin).collect(Collectors.toList());
+        tents = tents.stream().filter(tent -> tent.getPrice() <= priceMax).collect(Collectors.toList());
+
+        tents = tents.stream().filter(tent -> tent.getWeight() >= weightMin).collect(Collectors.toList());
+        tents = tents.stream().filter(tent -> tent.getWeight() <= weightMax).collect(Collectors.toList());
+
+        tents = tents.stream().filter(tent -> tent.getPlaces() >= placeMin).collect(Collectors.toList());
+        tents = tents.stream().filter(tent -> tent.getPlaces() <= placeMax).collect(Collectors.toList());
+
+        if (manufacturer > 0)
+            tents = tents.stream().filter(tent ->
+                    tent.getManufacturer().getId() == manufacturer).collect(Collectors.toList());
+
+        model.addAttribute("priceMin", priceMin);
+        model.addAttribute("priceMax", priceMax);
+        model.addAttribute("weightMin", weightMin);
+        model.addAttribute("weightMax", weightMax);
+        model.addAttribute("placeMin", placeMin);
+        model.addAttribute("placeMax", placeMax);
+        model.addAttribute("manufacturer", manufacturer);
         model.addAttribute("tents", tents);
         return "index";
     }
